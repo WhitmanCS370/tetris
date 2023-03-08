@@ -418,10 +418,35 @@ private static class ShapeCoordinates {
         return coordsTable[shapeType.getValue()];
     }
 }
+private class TAdapter extends KeyAdapter {
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (!isStarted || isPaused || isGameOver) {
+            return;
+        }
 
-public static void main(String[] args) {
-    EventQueue.invokeLater(() -> {
-        var game = new Tetris();
-        game.setVisible(true);
-    });
+        int keyCode = e.getKeyCode();
+
+        switch (keyCode) {
+            case KeyEvent.VK_LEFT:
+                tryToMove(currentPiece, currentX - 1, currentY);
+                break;
+            case KeyEvent.VK_RIGHT:
+                tryToMove(currentPiece, currentX + 1, currentY);
+                break;
+            case KeyEvent.VK_DOWN:
+                tryToMove(currentPiece.rotateRight(), currentX, currentY);
+                break;
+            case KeyEvent.VK_UP:
+                tryToMove(currentPiece.rotateLeft(), currentX, currentY);
+                break;
+            case KeyEvent.VK_SPACE:
+                dropDown();
+                break;
+            case 'd':
+            case 'D':
+                oneLineDown();
+                break;
+        }
+    }
 }
