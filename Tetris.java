@@ -54,6 +54,7 @@ public class Tetris extends JFrame {
 class Board extends JPanel implements ActionListener {
     private final int TIMER_DELAY = 300;
     private final Tetris parent;
+    private final Random random;
     private Timer timer;
     private boolean isStarted = false;
     private boolean isGameOver = false;
@@ -66,6 +67,7 @@ class Board extends JPanel implements ActionListener {
 
     public Board(Tetris parent) {
         this.parent = parent;
+        this.random = new Random();
         initBoard();
         initTimer();
         setFocusable(true);
@@ -101,8 +103,6 @@ class Board extends JPanel implements ActionListener {
         timer = new Timer(TIMER_DELAY, this);
         timer.start();
     }
-
-
 
     private int squareWidth() {
         return (int) getSize().getWidth() / parent.getBoardWidth();
@@ -186,7 +186,6 @@ class Board extends JPanel implements ActionListener {
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
             parent.getStatusBar().setText(String.valueOf(numLinesRemoved));
-            isGameOver = true;
             currentPiece.setShape(ShapeType.NoShape);
             repaint();
         }
@@ -196,7 +195,7 @@ class Board extends JPanel implements ActionListener {
         currentPiece = new Shape();
 
         ShapeType[] shapes = ShapeType.values();
-        currentPiece.setShape(shapes[new Random().nextInt(shapes.length)]);
+        currentPiece.setShape(shapes[1 + random.nextInt(shapes.length - 1)]);
 
         currentX = parent.getBoardWidth() / 2 + 1;
         currentY = parent.getBoardHeight() - 1 + currentPiece.minY();
