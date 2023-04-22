@@ -205,7 +205,7 @@ class Board extends JPanel implements ActionListener {
         ShapeType[] shapes = ShapeType.values();
         currentPiece.setShape(shapes[1 + random.nextInt(shapes.length - 1)]);
 
-        currentX = parent.getBoardWidth() / 2 + 1;
+        currentX = parent.getBoardWidth() / 2;
         currentY = parent.getBoardHeight() - 1 + currentPiece.minY();
 
         if (!tryMove(currentPiece, currentX, currentY)) {
