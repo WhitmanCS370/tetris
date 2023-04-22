@@ -143,8 +143,8 @@ class Board extends JPanel implements ActionListener {
 
     private void dropDown() {
         for (int i = 0; i < 4; i++) {
-            int x = currentPiece.x(i);
-            int y = currentPiece.y(i);
+            int x = currentX + currentPiece.x(i);
+            int y = currentY - currentPiece.y(i);
             board[x][y] = currentPiece.getShapeType();
         }
 
@@ -301,7 +301,7 @@ class Board extends JPanel implements ActionListener {
                     tryMove(currentPiece.rotateLeft(), currentX, currentY);
                     break;
                 case KeyEvent.VK_SPACE:
-                    dropDown();
+                    //dropDown();
                     break;
                 case 'd':
                 case 'D':
