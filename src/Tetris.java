@@ -26,7 +26,6 @@ public class Tetris extends JFrame {
         setLocationRelativeTo(null);
 
         board.start();
-
     }
 
     JLabel getStatusBar() {
@@ -50,4 +49,3 @@ public class Tetris extends JFrame {
         game.setVisible(true);
     }
 }
-
