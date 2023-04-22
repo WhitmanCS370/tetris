@@ -288,11 +288,20 @@ class Board extends JPanel implements ActionListener {
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
+            int keyCode = e.getKeyCode();
+
+            if (keyCode == 'p' || keyCode == 'P') {
+                isPaused = !isPaused;
+                if (isPaused) {
+                    parent.getStatusBar().setText("PAUSED");
+                } else {
+                    parent.getStatusBar().setText(String.format("%d", numLinesRemoved));
+                }
+            }
+
             if (!isStarted || isPaused || isGameOver) {
                 return;
             }
-
-            int keyCode = e.getKeyCode();
 
             switch (keyCode) {
                 case KeyEvent.VK_LEFT:
