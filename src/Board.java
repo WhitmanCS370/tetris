@@ -283,10 +283,6 @@ class Board extends JPanel implements ActionListener {
         }
     }
 
-    private enum GameState {
-        Paused, Running, GameOver
-    }
-
     private enum ShapeType {
         NoShape(new Color(0, 0, 0), 0),
 
