@@ -209,8 +209,9 @@ class Board extends JPanel implements ActionListener {
         currentY = parent.getBoardHeight() - 1 + currentPiece.minY();
 
         if (!tryMove(currentPiece, currentX, currentY)) {
-            currentPiece.setShape(ShapeType.NoShape);
+            isGameOver = true;
             timer.stop();
+            currentPiece.setShape(ShapeType.NoShape);
             var msg = String.format("Game over. Score: %d", numLinesRemoved);
             parent.getStatusBar().setText(msg);
         }
