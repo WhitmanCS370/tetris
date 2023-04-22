@@ -137,11 +137,19 @@ class Board extends JPanel implements ActionListener {
 
     private void oneLineDown() {
         if (!tryMove(currentPiece, currentX, currentY - 1)) {
-            dropDown();
+            pieceDropped();
         }
     }
 
     private void dropDown() {
+        int y = 0;
+        while (!tryMove(currentPiece, currentX, y)) {
+            y++;
+        }
+        pieceDropped();
+    }
+
+    private void pieceDropped() {
         for (int i = 0; i < 4; i++) {
             int x = currentX + currentPiece.x(i);
             int y = currentY - currentPiece.y(i);
@@ -300,7 +308,7 @@ class Board extends JPanel implements ActionListener {
                     tryMove(currentPiece.rotateLeft(), currentX, currentY);
                     break;
                 case KeyEvent.VK_SPACE:
-                    //dropDown();
+                    dropDown();
                     break;
                 case 'd':
                 case 'D':
